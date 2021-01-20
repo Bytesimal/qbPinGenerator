@@ -1,23 +1,3 @@
-#  Copyright © 2021 NeuroByte Tech. All rights reserved.
-#
-#  NeuroByte Tech is the Developer Company of Rohan Mathew.
-#
-#  Project: qbPinGenerator
-#  File Name: main.py
-#  Last Modified: 20/01/2021, 21:54
-#
-#  NeuroByte Tech is the Developer Company of Rohan Mathew.
-#
-#  Project: qbPinGenerator
-#  File Name: main.py
-#  Last Modified: 20/01/2021, 21:28
-#
-#  NeuroByte Tech is the Developer Company of Rohan Mathew.
-#
-#  Project: qbPinGenerator
-#  File Name: main.py
-#  Last Modified: 20/01/2021, 21:12
-
 from condition import *
 from customer import Customer
 from gen import Generator
@@ -34,6 +14,9 @@ gen = Generator()
 # Add more conditions as necessary
 gen.add_cond(MoreThan2Consec())
 gen.add_cond(ConsecSeq())
+gen.add_cond(PrevPins(depth=3))
+gen.add_cond(InAccNum())
+gen.add_cond(InSortCode())
 
 # running the generator
 print(gen.gen(c))

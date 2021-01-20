@@ -1,11 +1,3 @@
-#  Copyright © 2021 NeuroByte Tech. All rights reserved.
-#
-#  NeuroByte Tech is the Developer Company of Rohan Mathew.
-#
-#  Project: qbPinGenerator
-#  File Name: test.py
-#  Last Modified: 20/01/2021, 21:18
-
 from condition import *
 
 consec_seq = ConsecSeq().filter(["1388", "2434", "2345", "1123", "6789"])

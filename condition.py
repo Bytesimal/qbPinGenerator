@@ -4,6 +4,12 @@
 #
 #  Project: qbPinGenerator
 #  File Name: condition.py
+#  Last Modified: 20/01/2021, 22:00
+#
+#  NeuroByte Tech is the Developer Company of Rohan Mathew.
+#
+#  Project: qbPinGenerator
+#  File Name: condition.py
 #  Last Modified: 20/01/2021, 21:54
 #
 #  NeuroByte Tech is the Developer Company of Rohan Mathew.
@@ -12,8 +18,10 @@
 #  File Name: condition.py
 #  Last Modified: 20/01/2021, 21:18
 
-# interface for conditions
+
 class Condition:
+    """interface for conditions"""
+
     def filter(self, pins, *args) -> list:
         """
         :param pins is a list of 4-digit strings of pins
@@ -53,3 +61,21 @@ class ConsecSeq(Condition):
             if p not in consec_seqs:
                 satisfied.append(p)
         return satisfied
+
+
+class PrevPins(Condition):
+    def __init__(self, depth):
+        self.d = depth
+
+    def filter(self, pins, *args) -> list:
+        return [p for p in pins if p not in args[0].past_pins[-1 * self.d:]]
+
+
+class InAccNum(Condition):
+    def filter(self, pins, *args) -> list:
+        return [p for p in pins if p not in args[0].acc]
+
+
+class InSortCode(Condition):
+    def filter(self, pins, *args) -> list:
+        return [p for p in pins if p not in args[0].sort.replace("-", "")]
