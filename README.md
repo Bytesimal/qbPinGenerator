@@ -21,3 +21,45 @@ rules:
   installations
 - To run the main script, use `python main.py` after altering the parameters in the file to suit your needs.
 - To run tests on the code, use `python test.py`.
+
+### Design
+
+- `main.py` - contains the runnable script
+- `test.py` - contains the tests that can be performed to check for bugs
+- `gen.py` - contains the configuration for the `Generator` class
+- `condition.py` - contains the definition of `Condition` interface as well as classes which satisfy it. More
+  definitions for custom conditionscan be added to this file.
+- `customer.py` - defines the basic `Customer` construct which contains information which may be used in conditions.
+
+This project has been designed with modularity and usability in mind in order to simplify the addition of new
+`Condition` classes.
+
+The generator has been designed so that valid lists of pins "cascade" through the layers of conditions. It is the
+blueprint by which any numbers of conditions can be used since all conditions must satisfy the
+`Condition` interface - thus ensuring they have the correct methods.
+
+This ensures that there is sufficient modularity that different conditions can be used at different times, without
+affecting the rest of the code. This means that any security auditing only has to be done on the added code of the
+condition rather than checking the code for the whole application. After a condition has been designed and implemented,
+one only has to add it to the generator using the `add_cond()` method, and the run code for the generator can remain
+unchanged.
+
+For example, if I wanted to add a condition which ensures that the pin cannot start with a "0", all I would have to do
+is define the code for the condition as a class which implements the `Condition` interface and then implement the
+methods in `condition.py`, like this:
+
+```python
+class First0Digit(Condition):
+    def filter(self, pins, *args) -> list:
+        satisfied = []
+
+        for p in pins:
+            if p[0] != "0":
+                satisfied.append(p)
+        return satisfied
+```
+
+Then I would go to `main.py` and add a constructed condition to the generator with `gen.add_cond(First0Digit())` in the
+section which is clearly labeled as the place to add this code.
+
+There! That was easy!

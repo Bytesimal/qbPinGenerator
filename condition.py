@@ -4,12 +4,22 @@
 #
 #  Project: qbPinGenerator
 #  File Name: condition.py
+#  Last Modified: 20/01/2021, 21:54
+#
+#  NeuroByte Tech is the Developer Company of Rohan Mathew.
+#
+#  Project: qbPinGenerator
+#  File Name: condition.py
 #  Last Modified: 20/01/2021, 21:18
 
 # interface for conditions
 class Condition:
     def filter(self, pins, *args) -> list:
-        return []
+        """
+        :param pins is a list of 4-digit strings of pins
+        :return list of pins from the parameters which satisfy the defined condition
+        """
+        return pins
 
 
 class MoreThan2Consec(Condition):
