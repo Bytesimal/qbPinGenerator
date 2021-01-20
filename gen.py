@@ -26,4 +26,10 @@ class Generator:
         for c in self.conditions:
             combos = c.filter(combos, customer)
 
+        # remove
+        combos = [p for p in combos if
+                  p not in customer.past_pins[:3] and  # previous customer pins
+                  p not in customer.acc and  # account number
+                  p not in customer.sort.replace("-", "")]  # sort code
+
         return combos[np.random.randint(0, len(combos))]

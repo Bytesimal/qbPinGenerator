@@ -1,6 +1,3 @@
-from gen import digits
-
-
 # interface for conditions
 class Condition:
     def filter(self, pins, *args) -> list:
@@ -25,6 +22,7 @@ class Cond2Consec(Condition):
         return satisfied
 
 
+digits = [str(n) for n in range(10)]
 consec_seqs = []
 for i in range(len(digits) - 3):
     consec_seqs.append("".join(digits[i: i + 4]))
