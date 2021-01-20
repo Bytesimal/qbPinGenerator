@@ -1,18 +1,26 @@
+#  Copyright © 2021 NeuroByte Tech. All rights reserved.
+#
+#  NeuroByte Tech is the Developer Company of Rohan Mathew.
+#
+#  Project: qbPinGenerator
+#  File Name: condition.py
+#  Last Modified: 20/01/2021, 21:18
+
 # interface for conditions
 class Condition:
     def filter(self, pins, *args) -> list:
         return []
 
 
-class Cond2Consec(Condition):
+class MoreThan2Consec(Condition):
     def filter(self, pins, *args) -> list:
         satisfied = []
 
         for p in pins:
             valid = True
 
-            for i, c in enumerate(p[:-2]):
-                if c == p[i + 1] == p[i + 2]:
+            for j, c in enumerate(p[:-2]):
+                if c == p[j + 1] == p[j + 2]:
                     valid = False
                     break
 
