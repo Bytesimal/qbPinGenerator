@@ -4,9 +4,15 @@
 #
 #  Project: qbPinGenerator
 #  File Name: gen.py
+#  Last Modified: 20/01/2021, 21:25
+#
+#  NeuroByte Tech is the Developer Company of Rohan Mathew.
+#
+#  Project: qbPinGenerator
+#  File Name: gen.py
 #  Last Modified: 20/01/2021, 17:38
 
-import numpy as np
+import random as rd
 
 from condition import Condition
 from customer import Customer
@@ -40,4 +46,4 @@ class Generator:
                   p not in customer.acc and  # account number
                   p not in customer.sort.replace("-", "")]  # sort code
 
-        return combos[np.random.randint(0, len(combos))]  # return random pin
+        return combos[rd.randint(0, len(combos))]  # return random pin
