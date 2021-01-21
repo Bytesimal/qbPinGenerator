@@ -63,6 +63,8 @@ class First0Digit(Condition):
 
 Then I would go to `main.py` and add a constructed condition to the generator with
 ```python
+# main.py
+
 gen.add_cond(First0Digit())
 ```
 in the section which is clearly labeled as the place to add this code.
